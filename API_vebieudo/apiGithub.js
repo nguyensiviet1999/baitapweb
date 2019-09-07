@@ -1,6 +1,6 @@
 var canvas = document.getElementById('game');
 
-var context = canvas.getContext('2d');
+var context = canvas.getContext('2d');//lấy đối tượng vẽ
 
 var id = setInterval(xuLyAPI, 5000); //Cứ 3s gọi hàm myAlert một lần
 
@@ -67,14 +67,21 @@ function xuLyAPI(){
 	      		needData.IssuesEvent++
 	      		break;
 	      	}
-			  	
+			
 	      }
 	    })
 	    console.log(needData)
 	  } else {
 	    console.log('error')
 	  }
-	  	var distance = 20;
+	  	
+	  	drawChart(needData);
+	}
+
+	request.send()
+}
+function drawChart(needData){
+	var distance = 20;
 		var colWidth = 40;
 		var start = 50;
 		context.clearRect(0,0,canvas.width,canvas.height);
@@ -107,10 +114,6 @@ function xuLyAPI(){
 		context.fillText(needData.PullRequestEvent,start+=(colWidth+distance),canvas.height-40-needData.PullRequestEvent*10-5,50);
 		context.fillText(needData.WatchEvent,start+=(colWidth+distance),canvas.height-40-needData.WatchEvent*10-5,50);
 		start =50;
-
-	}
-
-	request.send()
+		context.fillText('Số Event',35,35);
 }
-	// console.log(needData);
 		
